@@ -1,0 +1,7 @@
+.displayData{
+  display: flex; 
+  flex: wrap;
+  justify-content: space-around;
+  align-items: center;
+  border-color: 1px solid salmon;
+}
