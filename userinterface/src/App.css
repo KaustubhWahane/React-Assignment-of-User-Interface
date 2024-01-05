@@ -52,4 +52,5 @@ button {
   width: 70em;
   height: 5em;
   margin: 5em 24em;
+  display: inline-block;
 }
