@@ -1,34 +1,42 @@
-import { useState, useContext } from 'react';
-import { UserContext } from '../UserContext';
+import './UserDetail.css';
+import PropTypes from 'prop-types';
 
-const UserDetail = () => {
-  const { userData } = useContext(UserContext);
-  const [selectedUserId, setSelectedUserId] = useState(null);
-
-  const handleUserClick = (id) => {
-    setSelectedUserId(id);
-  };
-
-  const selectedUser = userData.find((user) => user.id === selectedUserId);
-
+const UserDetail = ({ selectedUser }) => {
   return (
-    <div>
-      <h2>User Detail</h2>
-      <ul>
-        {userData.map((user) => (
-          <li key={user.id} onClick={() => handleUserClick(user.id)}>
-            {user.name}
-          </li>
-        ))}
-      </ul>
-      {selectedUser && (
-        <div>
-          <h3>{selectedUser.name}</h3>
+    <div className="user-detail-container">
+      <h2 className="header">User Details</h2>
+      {selectedUser ? (
+        <div className="details">
+          <p>Name: {selectedUser.name}</p>
           <p>Email: {selectedUser.email}</p>
+          <p>Phone: {selectedUser.phone}</p>
+          <p>Address: {`${selectedUser.address.street}, ${selectedUser.address.suite}, ${selectedUser.address.city}, ${selectedUser.address.zipcode}`}</p>
+          <p>Company: {selectedUser.company.name}</p>
+          <p>Website: {selectedUser.website}</p>
         </div>
+      ) : (
+        <p className="placeholder">Click a user to view details</p>
       )}
     </div>
   );
+};
+
+UserDetail.propTypes = {
+  selectedUser: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
+    address: PropTypes.shape({
+      street: PropTypes.string.isRequired,
+      suite: PropTypes.string.isRequired,
+      city: PropTypes.string.isRequired,
+      zipcode: PropTypes.string.isRequired,
+    }).isRequired,
+    company: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+    website: PropTypes.string.isRequired,
+  }),
 };
 
 export default UserDetail;

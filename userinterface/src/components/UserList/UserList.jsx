@@ -1,7 +1,10 @@
-import { useContext, useEffect } from 'react';
+// UserList.js
+import { useContext } from 'react';
 import { UserContext } from '../UserContext';
+import { useEffect } from 'react';
+import './UserList.css';
 
-const UserList = () => {
+const UserList = ({ setSelectedUser }) => {
   const { userData, loading, error, fetchUserData } = useContext(UserContext);
 
   const fetchData = async () => {
@@ -10,6 +13,10 @@ const UserList = () => {
     } catch (err) {
       console.error('Error fetching user data:', err);
     }
+  };
+
+  const showDetails = (user) => {
+    setSelectedUser(user);
   };
 
   useEffect(() => {
@@ -25,11 +32,15 @@ const UserList = () => {
   }
 
   return (
-    <div>
-      <h2>User List</h2>
-      <ul>
+    <div className="user-list-container">
+      <h2 className="header">All Users</h2>
+      <ul className="user-list">
         {userData.map((user) => (
-          <li key={user.id}>{user.name}</li>
+          <li key={user.id}>
+            <button className="user-button" onClick={() => showDetails(user)}>
+              {user.name}
+            </button>
+          </li>
         ))}
       </ul>
     </div>
