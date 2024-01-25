@@ -2,6 +2,7 @@ import './UserDetail.css';
 import PropTypes from 'prop-types';
 
 const UserDetail = ({ selectedUser }) => {
+  // Ye batane ki jarurat hai kya?
   return (
     <div className="user-detail-container">
       <h2 className="header">User Details</h2>
@@ -15,12 +16,13 @@ const UserDetail = ({ selectedUser }) => {
           <p>Website: {selectedUser.website}</p>
         </div>
       ) : (
-        <p className="placeholder">Click a user to view details</p>
+        <p className="placeholder">User Dekhne ke Liye 1 Dabaiye</p>
       )}
     </div>
   );
 };
 
+// Ye thoda samajna padega
 UserDetail.propTypes = {
   selectedUser: PropTypes.shape({
     name: PropTypes.string.isRequired,

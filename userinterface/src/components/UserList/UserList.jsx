@@ -15,14 +15,17 @@ const UserList = ({ setSelectedUser }) => {
     }
   };
 
+  // It's responsible when the user clicks any user button to update meaning render it in the UserDetail area
   const showDetails = (user) => {
     setSelectedUser(user);
   };
 
+  // User Likhte waqt jo type karega
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
 
+  // Side Effects
   useEffect(() => {
     fetchData();
   }); 
