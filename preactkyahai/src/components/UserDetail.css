@@ -1,0 +1,17 @@
+/* UserDetail.css */
+.user-detail {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .user-name {
+    color: #007bff;
+  }
+  
+  .details {
+    margin-top: 10px;
+    padding-top: 5px;
+    border-top: 1px solid #ddd;
+  }
