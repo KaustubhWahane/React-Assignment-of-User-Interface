@@ -1,0 +1,13 @@
+When the component mounts (or the page is refreshed), the useEffect hook triggers the fetchData function.
+The fetchData function, in turn, calls the fetchUserData function, making an API request to get user data.
+While the data is being fetched, the loading state is set to true, indicating that the content is still loading.
+Initial Display State:
+
+Once the data is successfully fetched, the setUserData function is called to update the userData state with the fetched data.
+The setLoading function is then called to set the loading state to false, indicating that the loading is complete.
+The component re-renders, and the user list (userData) is displayed on the screen.
+Search State:
+
+When the user types into the search input (searchTerm state), the handleSearch function is called, updating the searchTerm state.
+The filteredUsers state is derived from userData based on the search criteria.
+The user list (filteredUsers) is updated, and the component re-renders to display the filtered list.

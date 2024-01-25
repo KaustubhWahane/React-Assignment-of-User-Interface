@@ -1,11 +1,11 @@
-// UserList.js
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../UserContext';
-import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './UserList.css';
 
 const UserList = ({ setSelectedUser }) => {
   const { userData, loading, error, fetchUserData } = useContext(UserContext);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const fetchData = async () => {
     try {
@@ -19,23 +19,45 @@ const UserList = ({ setSelectedUser }) => {
     setSelectedUser(user);
   };
 
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
   useEffect(() => {
     fetchData();
   }); 
 
+  // Page Sabse Pehele Render hote waqt
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="user-list-container">
+        <p className="loading-text">Loading...</p>
+      </div>
+    );
   }
 
+  // Page me render hote waqt koi galti hui toh
   if (error) {
     return <p>Error: {error.message}</p>;
   }
 
+  // Ye wala search ke waqt kaam karta hai
+  const filteredUsers = userData.filter((user) =>
+    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="user-list-container">
       <h2 className="header">All Users</h2>
+      <input
+        type="text"
+        placeholder="Search users"
+        value={searchTerm}
+        onChange={handleSearch}
+        className="search-input"
+      />
       <ul className="user-list">
-        {userData.map((user) => (
+        {filteredUsers.map((user) => (
           <li key={user.id}>
             <button className="user-button" onClick={() => showDetails(user)}>
               {user.name}
@@ -47,4 +69,7 @@ const UserList = ({ setSelectedUser }) => {
   );
 };
 
+UserList.propTypes = {
+  setSelectedUser: PropTypes.func.isRequired,
+};
 export default UserList;

@@ -1,9 +1,14 @@
 .user-list-container {
     max-width: 600px;
     margin: 0 auto;
+    text-align: left;
+    position: relative;
   }
-  
-  .header {
+.loading-text {
+    font-size: 50px;
+  }
+
+.header {
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
@@ -30,3 +35,16 @@
     background-color: #357ae8; /* Darker Blue on hover */
   }
   
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .search-input:focus {
+    outline: none;
+    border-color: #4caf50; /* Green when focused */
+  }
